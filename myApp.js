@@ -108,10 +108,18 @@ const removeManyPeople = (done) => {
   })
 };
 
+// Chain Search Query Helpers to Narrow Search Results
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-
-  done(null /*, data*/);
+  Person
+    .find({ favoriteFoods: foodToSearch })
+    .sort('name')
+    .limit(2)
+    .select(['name', 'favoriteFoods'])
+    .exec(function(err, data) {
+      if (err) return done(err);
+      done(null, data);
+    })
 };
 
 /** **Well Done !!**
