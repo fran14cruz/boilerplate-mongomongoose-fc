@@ -69,7 +69,7 @@ const findPersonById = (personId, done) => {
 // Perform Classic Updates by Running Find, Edit, then Save
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  Person.findById(personID, function(err, person) {
+  Person.findById(personId, function(err, person) {
     if (err) return done(err);
     person.favoriteFoods.push(foodToAdd);
     person.save(function(err, data) {
