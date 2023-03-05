@@ -13,6 +13,7 @@ const personSchema = new Schema({
   favoriteFoods: [String]
 });
 
+// create a Model with existing Schema 'personSchema'
 const Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
@@ -40,8 +41,12 @@ const createManyPeople = (arrayOfPeople, done) => {
   })
 };
 
+// Use model.find() to Search Your Database
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({ name: personName }, function(err, data) {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
 
 const findOneByFood = (food, done) => {
