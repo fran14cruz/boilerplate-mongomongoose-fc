@@ -96,11 +96,16 @@ const removeById = (personId, done) => {
   Person.findByIdAndRemove(personId, function(err, data) {
     if (err) return done(err);
     done(null, data);
-  })
+  });
 };
 
+// Delete Many Documents with model.remove()
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
+  Person.remove({ name: nameToRemove }, function(err, data) {
+    if (err) return done(err);
+    done(null, data);
+  })
 
   done(null /*, data*/);
 };
